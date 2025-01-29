@@ -10,11 +10,10 @@ import (
 	"flag"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"strings"
 
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 )
 
 const cryptPrefix = "CRYPT#"
@@ -56,7 +55,7 @@ func main() {
 
 	filename := os.Args[len(os.Args)-1]
 	m := make(map[interface{}]interface{})
-	yamlFile, err := ioutil.ReadFile(filename)
+	yamlFile, err := os.ReadFile(filename)
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "File error: %v\n", err)
 		os.Exit(2)
