@@ -1,0 +1,20 @@
+[package]
+name = "yamlcrypt"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "yamlcrypt"
+path = "yamlcrypt.rs"
+
+[dependencies]
+anyhow = "1.0"
+base64 = "0.21"
+block-padding = "0.3"
+cbc = "0.1.2"
+cipher = "0.4"
+clap = { version = "4.5", features = ["derive"] }
+md5 = "0.7"
+rand = "0.8"
+serde_yaml = "0.9"
+aes = "0.8.4"

@@ -53,3 +53,11 @@ or
 ```shell
 apt-get install python-yaml
 ```
+
+## Requirements for Rust version
+
+`yamlcrypt.rs` requires `Cargo.toml` with dependencies.
+
+```shell
+cargo build --release
+```
