@@ -22,7 +22,6 @@ Usage: yamlcrypt [options] FILE
 ## Building Go version
 
 ```shell
-go get -u gopkg.in/yaml.v2
 go build yamlcrypt.go
 ```
 
