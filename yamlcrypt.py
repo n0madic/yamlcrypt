@@ -40,14 +40,14 @@ class AESCipher(object):
     def encrypt(self, raw):
         raw = self._pad(AESCipher.str_to_bytes(raw))
         iv = Random.new().read(AES.block_size)
-        cipher = AES.new(self.key, AES.MODE_CBC, iv)
-        return base64.b64encode(iv + cipher.encrypt(raw)).decode('utf-8')
+        cipher_obj = AES.new(self.key, AES.MODE_CBC, iv)
+        return base64.b64encode(iv + cipher_obj.encrypt(raw)).decode('utf-8')
 
     def decrypt(self, enc):
         enc = base64.b64decode(enc)
         iv = enc[:AES.block_size]
-        cipher = AES.new(self.key, AES.MODE_CBC, iv)
-        return self._unpad(cipher.decrypt(enc[AES.block_size:])).decode('utf-8')
+        cipher_obj = AES.new(self.key, AES.MODE_CBC, iv)
+        return self._unpad(cipher_obj.decrypt(enc[AES.block_size:])).decode('utf-8')
 
 
 if __name__ == "__main__":
@@ -82,9 +82,9 @@ if __name__ == "__main__":
 
     cipher = AESCipher(password)
 
-    with open(args.file, 'r') as stream:
+    with open(args.file, 'r', encoding='utf-8') as stream:
         try:
-            yml = yaml.load(stream)
+            yml = yaml.load(stream, Loader=yaml.SafeLoader)
         except yaml.YAMLError as exc:
             print(exc, file=sys.stderr)
             exit(2)
